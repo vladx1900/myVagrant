@@ -5,8 +5,61 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome</title>
-  </head>
+
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous">
+
+      <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="style.css">
+<!--<style>-->
+    <!--#margins20 {-->
+        <!--padding-left: 20%;-->
+        <!--padding-right: 20%;-->
+    <!--}-->
+<!--</style>-->
+</head>
   <body>
-    <h1>Your future project is ready!</h1>
+
+  <script>
+
+      $(document).ready(function () {
+
+          $('#search').keyup(function () {
+
+              var search = $('#search').val();
+
+              $.ajax({
+                  url:'search.php',
+                  data:{search:search},
+                  type: 'POST',
+                  success:function (data) {
+                      if (!data.error) {
+                        $('#result').html(data);
+                      }
+                  }
+              })
+
+          });
+
+      })
+
+  </script>
+
+  <div id="container" class='col-xs-6 col-xs-offset-3 text-center'>
+
+      <h2>Search Our Database</h2> <br/>
+
+      <div id="margins30">
+            <input class="form-control" type="text" id="search" name="search" placeholder="Search our inventory"> <br/><br/>
+
+            <div class="alert-info" id="result"></div>
+      </div>
+
+  </div>
+
+
+
+
   </body>
 </html>
