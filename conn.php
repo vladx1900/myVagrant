@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "ajax";
+$username = "vlad";
+$password = "vlad";
+$dbname = "c9";
 
 // Create connection
 $conn = mysqli_connect($servername, $username, $password);
