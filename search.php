@@ -1,10 +1,6 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, 'c9');
+include('db.php');
 
 // Check connection
 if ($conn->connect_error) {
@@ -14,28 +10,35 @@ if ($conn->connect_error) {
 $search = $_POST['search'];
 
 if (!empty($search)) {
-    $query = "SELECT * FROM cars WHERE cars like '$search%' ";
+    $query = "SELECT * FROM cars WHERE title like '$search%' ";
     $search_query = mysqli_query($conn, $query);
+    $count = mysqli_num_rows($search_query);
 
     if(!$search_query) {
         die('Query failed' . mysqli_error($conn));
     }
     
-
-    while($row = mysqli_fetch_array($search_query)) {
-        $brand = $row['cars'];
-
-        ?>
-
-        <ul>
-
-        <?php
-
-            echo "<li>{$brand} in stock</li>";
-
-        ?>
-         </ul>
-        <?php
+    if($count <= 0 ) {
+        
+        echo "Sorry, we dont have that car available!";
+        
+    } else {
+    
+        while($row = mysqli_fetch_array($search_query)) {
+            $brand = $row['title'];
+    
+            ?>
+    
+            <ul>
+    
+            <?php
+    
+                echo "<li>{$brand} in stock</li>";
+    
+            ?>
+             </ul>
+            <?php
+        }
     }
 }
 

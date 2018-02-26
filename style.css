@@ -1,8 +1,8 @@
-#margins30 {
-    padding-left: 30%;
-    padding-right: 30%;
-}
-
 #container {
     padding-top: 5%;
+
+}
+
+ul {
+   list-style-type: none; 
 }
